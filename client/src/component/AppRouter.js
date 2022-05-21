@@ -7,10 +7,6 @@ import {
 import axios from "axios";
 
 import Home from "../routes/Home";
-import Login from "../routes/Login";
-import SignUp from "../routes/SignUp";
-import MovieDetail from "../routes/MovieDetail";
-import AllMovie from "../routes/AllMovie";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -19,7 +15,8 @@ function AppRouter(){
 
   const callApi = async()=>{
     const response = await axios.get('http://localhost:5000/');
-
+    console.log("AppRouter");
+    console.log(response.data);
     setData(response.data);
 
 
@@ -33,10 +30,6 @@ function AppRouter(){
       <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element = {<Home data = {data} />} />
-        <Route path="/Login" element = {<Login />} />
-        <Route path="/SignUp" element = {<SignUp />} />
-        <Route path="/film/:title/:company" element={<MovieDetail />} />
-        <Route path="/film/movies" element={<AllMovie />}  />
       </Routes>
     </Router>
     )
