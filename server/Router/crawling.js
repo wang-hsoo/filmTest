@@ -14,11 +14,20 @@ function getLotte(){
     const getHTML = async() => {
         try{
             console.log("getHtml!!!!");
-            var dic = {"MethodName":"GetMoviesToBe","channelType":"HO","osType":"Chrome","osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36","multiLanguageID":"KR","division":1,"moviePlayYN":"Y","orderType":"1","blockSize":100,"pageNo":1,"memberOnNo":""}
+            var dic = {"MethodName":"GetMoviesToBe",
+            "channelType":"HO",
+            "osType":"Chrome",
+            "osVersion":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.82 Safari/537.36",
+            "multiLanguageID":"KR",
+            "division":1,"moviePlayYN":"Y",
+            "orderType":"1",
+            "blockSize":100,"pageNo":1,
+            "memberOnNo":""}
 
             return await axios.post("https://www.lottecinema.co.kr/LCWS/Movie/MovieData.aspx",  'ParamList='+JSON.stringify(dic));
         }catch(err){
             console.log("크롤링 홈페이지 post 실패 : " + err);
+            extractEventInfo()
         }   
     }
     
@@ -38,7 +47,7 @@ function getLotte(){
                 img: Movies[i].PosterURL,
                 age: Movies[i].ViewGradeNameKR,
                 percent: Movies[i].BookingRate,
-                key: Movies[i].RepresentationMovieCode
+                key: Movies[i].RepresentationMovieCoden
             });
             trailerKey.push(Movies[i].RepresentationMovieCode);
         }
